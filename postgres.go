@@ -8,14 +8,14 @@ import (
 
 // InitializePostgres initializes the connections to the Postgres host.
 func InitializePostgres(config *Config) (*sqlx.DB, error) {
-	dataSourceName := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s connection_timeout=%d",
+	dataSourceName := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s connect_timeout=%d",
 		config.Host,
 		config.Port,
 		config.User,
 		config.Password,
 		config.Database,
 		config.SSLMode,
-		config.ConnectionTimeout,
+		config.ConnectTimeout,
 	)
 
 	// Make the connection.
