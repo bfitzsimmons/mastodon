@@ -10,4 +10,5 @@ type Config struct {
 	SSLMode            string
 	MaxConnections     int
 	MaxIdleConnections int
+	ConnectionTimeout  int
 }
