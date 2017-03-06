@@ -6,16 +6,8 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// PG contains the postgres connection pool.
-var PG *Postgres
-
-// Postgres wraps the Postgres client so that functionality may be added if needed.
-type Postgres struct {
-	*sqlx.DB
-}
-
 // InitializePostgres initializes the connections to the Postgres host.
-func InitializePostgres(config *Config) (*Postgres, error) {
+func InitializePostgres(config *Config) (*sqlx.DB, error) {
 	dataSourceName := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
 		config.Host,
 		config.Port,
@@ -40,5 +32,5 @@ func InitializePostgres(config *Config) (*Postgres, error) {
 	connection.SetMaxIdleConns(config.MaxIdleConnections)
 	connection.SetMaxOpenConns(config.MaxConnections)
 
-	return &Postgres{connection}, nil
+	return connection, nil
 }
