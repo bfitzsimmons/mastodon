@@ -13,3 +13,12 @@ func GeneratePlaceholders(num int) string {
 	}
 	return strings.TrimSuffix(placeholders, ", ")
 }
+
+// GenerateNamedPlaceholders returns named placeholders (:field_name) for use in SQL queries.
+func GenerateNamedPlaceholders(fields []string) string {
+	placeholders := ""
+	for _, field := range fields {
+		placeholders += fmt.Sprintf(":%s, ", field)
+	}
+	return strings.TrimSuffix(placeholders, ", ")
+}
