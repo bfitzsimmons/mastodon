@@ -24,11 +24,6 @@ func InitializePostgres(config *Config) (*sqlx.DB, error) {
 		return nil, err
 	}
 
-	// Ping the server to make sure we're connected.
-	if err = connection.Ping(); err != nil {
-		return nil, err
-	}
-
 	// Set the connection limits.
 	connection.SetMaxIdleConns(config.MaxIdleConnections)
 	connection.SetMaxOpenConns(config.MaxConnections)
