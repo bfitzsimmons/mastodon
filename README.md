@@ -3,5 +3,5 @@ Mastodon is a Postgres library written in Go. It will allow the user to connect 
 
 ## Installation
 ```bash
-go get -u bitbucket.org/bfitzsimmons/mastodon
+go get -u github.com/bfitzsimmons/mastodon
 ```
