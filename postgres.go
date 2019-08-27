@@ -9,35 +9,25 @@ import (
 
 // InitializePostgres initializes the connections to the Postgres host.
 func InitializePostgres(config *Config) (*sqlx.DB, error) {
-	dataSourceName := generateDataSourceName(config)
-
 	// Make the connection.
-	connection, err := sqlx.Connect("postgres", dataSourceName)
+	connection, err := sqlx.Connect("postgres", generateDataSourceName(config))
 	if err != nil {
 		return nil, err
 	}
-
-	// Set the connection limits.
 	connection.SetMaxIdleConns(config.MaxIdleConnections)
 	connection.SetMaxOpenConns(config.MaxConnections)
-
 	return connection, nil
 }
 
 // InitializePostgresWithContext initializes the connections to the Postgres host -- with context.
 func InitializePostgresWithContext(ctx context.Context, config *Config) (*sqlx.DB, error) {
-	dataSourceName := generateDataSourceName(config)
-
 	// Make the connection.
-	connection, err := sqlx.ConnectContext(ctx, "postgres", dataSourceName)
+	connection, err := sqlx.ConnectContext(ctx, "postgres", generateDataSourceName(config))
 	if err != nil {
 		return nil, err
 	}
-
-	// Set the connection limits.
 	connection.SetMaxIdleConns(config.MaxIdleConnections)
 	connection.SetMaxOpenConns(config.MaxConnections)
-
 	return connection, nil
 }
 
